@@ -1,9 +1,9 @@
 steps:
 - name: gcr.io/cloud-builders/docker
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/cloudrun-demo:${SHORT_SHA}', '.']
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/cloudrun-demo:latest', '.']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ["push", "gcr.io/$PROJECT_ID/cloudrun-demo"]
+  args: ["push", "gcr.io/$PROJECT_ID/cloudrun-demo:latest"]
 
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['run', 'deploy', 'cloudrun-demo', '--image', 'gcr.io/$PROJECT_ID/cloudrun-demo:${SHORT_SHA}', '--region', 'us-central1', '--platform', 'managed']
+  args: ['run', 'deploy', 'cloudrun-demo', '--image', 'gcr.io/$PROJECT_ID/cloudrun-demo:latest', '--region', 'us-central1', '--platform', 'managed']
